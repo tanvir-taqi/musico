@@ -6,7 +6,7 @@ const Footer = () => {
     return (
         <div className='py-24 md:px-24 p-6 text-center color-bg' >
         <div className='flex flex-col'>
-            <h1 className="text-3xl  font-bold">Our Contacts</h1>
+            <h1 className="text-3xl  font-bold">My Contacts</h1>
             <p className='my-6'><strong>Phone :</strong> +8800000000</p>
             <p><strong>Email :</strong> fakemail@email.com</p>
             <div className='flex my-6 justify-center'>
