@@ -29,6 +29,7 @@ import './Header.css'
                             <div className="nav-menu-link items-start flex flex-col md:flex-row py-12 md:py-1 ">
                                 <Link className={`mr-4 text-lg font-semibold   `} to='/'>Home</Link>
                                 <Link className={`mr-4 text-lg font-semibold   `} to='/services'>Services</Link>
+                                <Link className={`mr-4 text-lg font-semibold   `} to='/login'>Log In</Link>
                                
         
                             </div>
