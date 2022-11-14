@@ -1,9 +1,20 @@
-import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLoaderData } from 'react-router-dom';
+import SingleReview from './SingleReview';
 
 const ServiceDetails = () => {
     const currentService = useLoaderData()
     const { _id, service, picture, price, description } = currentService
+    const [currentReview , setCurrentReview] = useState([])
+
+    useEffect(()=>{
+        fetch(`http://localhost:5000/reviews/${_id}`)
+        .then(res => res.json())
+        .then(data =>{
+            
+         setCurrentReview(data)
+        } )
+    },[_id])
 
     return (
         <div className='py-32 px-3 md:px-32'>
@@ -15,8 +26,22 @@ const ServiceDetails = () => {
             <h1 className='text-xl font-bold py-12 '>{price}$/hr </h1>
             <p>{description}</p>
 
-            <button className='my-12 w-52 flex items-center justify-center py-1 rounded-full rounded-br-lg font-semibold bg-rose-400'>Hire Me</button>
+            <button className='mb-5 mt-16 w-52 flex items-center justify-center py-1 rounded-full rounded-br-lg font-semibold bg-rose-400'>Hire Me</button>
+            <Link to={`/addreview/${_id}`} className='mb-12 w-52 flex items-center justify-center py-1 rounded-full rounded-tl-lg font-semibold bg-rose-400'>Add Review</Link>
 
+            </div>
+            <div>
+                {
+                    currentReview.length < 1 ? <p className='colored-text font-semibold text-center my-12'>No Review Founded</p> 
+                    : <div> 
+                        {
+                            currentReview.map(cr => <SingleReview 
+                            key={cr._id}
+                            review = {cr}
+                            ></SingleReview>)
+                        }
+                         </div>
+                }
             </div>
 
         </div>

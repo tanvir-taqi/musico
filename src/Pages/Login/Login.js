@@ -23,10 +23,12 @@ const Login = () => {
         login(email, password)
             .then(result => {
                 const user = result.user;
+                navigate(from, { replace: true });
             })
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                
                
             }).catch (error => console.log(error));
     }

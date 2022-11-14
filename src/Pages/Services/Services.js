@@ -27,7 +27,7 @@ const Services = () => {
                 ></SingleService>)
             } 
         </div>
-        <div className={`text-center ${seeAll ==count ? 'hidden' : 'block'}`}>
+        <div className={`text-center ${seeAll == count ? 'hidden' : 'block'}`}>
             <button onClick={()=>setSeeAll(count)} className={`text-lg text-gray-800 color-bg px-4 py-2 rounded-lg font-bold`} >See All</button>
         </div>
              
