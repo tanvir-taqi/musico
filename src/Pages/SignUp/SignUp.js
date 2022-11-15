@@ -4,7 +4,7 @@ import { AuthContext } from '../../AuthContext/UserContext';
 
 const SignUp = () => {
 
-    const {createUser , userUpdate} = useContext(AuthContext);
+    const {createUser , userUpdate,setLoading} = useContext(AuthContext);
     const [ errorMsg, setErrorMsg] = useState('')
 
     const navigate = useNavigate();
@@ -32,7 +32,7 @@ const SignUp = () => {
                 }
                 userUpdate(profile)
                 .then(res => {
-                    
+                    setLoading(false)
                 })
                 .catch(err => console.log(err))
                 navigate(from, { replace: true });

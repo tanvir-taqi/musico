@@ -11,19 +11,19 @@ import { AuthContext } from '../../AuthContext/UserContext';
 const Header = () => {
     const [display, setDisplay] = useState(false)
 
-    const {user,logOut} = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
 
-    const handleLogOut =()=>{
+    const handleLogOut = () => {
         const agreeToLogout = window.confirm("Are You Sure?")
-        if(agreeToLogout){
+        if (agreeToLogout) {
             logOut()
-            .then(res=>{})
-            .catch(err => console.log(err))
+                .then(res => { })
+                .catch(err => console.log(err))
         }
     }
 
     return (
-        <div className=''>
+        <div className='' >
             <div className={`fixed z-50 w-full header py-5 header-container  flex flex-col md:flex-row justify-around items-center`}>
                 <div className="header-logo flex justify-around around items-center w-full  md:w-1/6">
 
@@ -38,25 +38,28 @@ const Header = () => {
                 </div>
                 {/* header links  */}
                 <div className={`nav-menu flex  md:items-center flex-col md:flex-row   ${display ? 'flex' : 'hidden md:flex'}`} >
-                    <div className="nav-menu-link items-start flex flex-col md:flex-row py-12 md:py-1 ">
-                        <Link className={`mr-4 text-lg font-semibold   `} to='/'>Home</Link>
-                        <Link className={`mr-4 text-lg font-semibold   `} to='/services'>Services</Link>
-                      
+                    <div onClick={()=>setDisplay(false)} className="nav-menu-link items-start flex flex-col md:flex-row py-12 md:py-1 ">
+                        <Link className={`mr-4 text-lg font-semibold   my-2`} to='/'>Home</Link>
+                        <Link className={`mr-4 text-lg font-semibold   my-2`} to='/services'>Services</Link>
 
 
-                    </div>
-
-
-                    <div className="  md:mx-3 ">
                         {
-                            user ? <div className='flex items-center'>
-                                <div> {user?.photoURL ? <img src={user?.photoURL} alt="" className="user-img cursor-pointer" title={user?.displayName} /> : <FaUser></FaUser>}</div>
-                                <button onClick={handleLogOut} className='mx-2'>Log Out</button>
+                            user ? <>
+                                <Link className={`mr-4 text-lg font-semibold  my-2 `} to='/myreview'>My Review</Link>
+                                <Link className={`mr-4 text-lg font-semibold  my-2 `} to='/addservices'>Add Services</Link>
 
-                            </div> : <Link to='/login' className=' mr-4 text-lg font-semibold '>Log In </Link>
+                                <div> {user?.photoURL ? <img src={user?.photoURL} alt="" className="user-img "  /> : <FaUser></FaUser>}</div>
+                                <button onClick={handleLogOut} className='md:mx-4 text-lg font-semibold my-2'>Log Out</button>
+
+                            </>
+                                : <Link to='/login' className=' mr-4 text-lg font-semibold my-2'>Log In </Link>
                         }
 
+
                     </div>
+
+
+
 
 
                 </div>

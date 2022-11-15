@@ -1,4 +1,6 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
+import { FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext/UserContext';
 
@@ -6,10 +8,11 @@ import { AuthContext } from '../../AuthContext/UserContext';
 
 const Login = () => {
 
-    const { login } = useContext(AuthContext);
+    const { login,setLoading ,socialLogin} = useContext(AuthContext);
 
     const navigate = useNavigate();
     const location = useLocation();
+    const googleProvider = new GoogleAuthProvider()
 
 
     const from = location.state?.from?.pathname || "/";
@@ -24,13 +27,20 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 navigate(from, { replace: true });
+                setLoading(false)
             })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                
-               
-            }).catch (error => console.log(error));
+            .catch (error => console.log(error));
+    }
+
+    const handleSocialLogin = (provider) =>{
+        socialLogin(provider)
+           .then(result => {
+                const user = result.user;
+                navigate(from, { replace: true });
+                setLoading(false)
+            })
+           .catch(error => console.log(error));
+
     }
 
 return (
@@ -49,6 +59,7 @@ return (
                 <input type="submit" className='font-bold text-lg bg-[#F9C6CD] py-2 px-4 rounded my-3' value="Sign In" />
             </form>
             <h4>New to Musico? <Link to='/signup' className='text-[rgb(233,31,99)]'>Create Account</Link></h4>
+            <button onClick={()=>handleSocialLogin(googleProvider)} className='flex items center justify-center px-5 py-2 rounded-full my-5 bg-[#F9C6CD]'> <span className='mt-1 mr-4'><FaGoogle></FaGoogle></span> Sign In With Google</button>
         </div>
 
     </div>

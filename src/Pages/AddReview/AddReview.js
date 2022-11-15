@@ -48,13 +48,13 @@ const AddReview = () => {
                     
                 }
             })
-            .catch(er => alert(er));
+            .catch(err => alert(err));
 
 
     }
 
     return (
-        <div className='py-24 md:px-20'>
+        <div className='py-32 md:px-20'>
             <form onSubmit={handleAddReview}>
                 <h2 className="text-4xl colored-text">You are Adding a Review for {service}</h2>
                 <h4 className="text-3xl">Price: {price} $/hr</h4>
