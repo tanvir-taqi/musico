@@ -57,7 +57,7 @@ const MyReview = () => {
                     handleDelete={handleDelete}
 
                 ></SIngleMyReview>)
-                    : <div> <h1 className="text-center text-3xl text-red-500 font-extrabold my-3">No Review Found of Yours</h1></div>
+                    : <div> <h1 className="text-center text-3xl colored-text font-extrabold my-3">No Review Found of Yours</h1></div>
             }
         </div>
     );

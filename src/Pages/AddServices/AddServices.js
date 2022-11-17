@@ -1,11 +1,10 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AddServices = () => {
 
-    const navigate = useNavigate()
     
     const handleAddService = (event)=>{
 
@@ -63,7 +62,7 @@ const AddServices = () => {
                 <input name="price" type="number" placeholder="Price per Hour"  className=" w-full p-3 " required/>
             </div>
             <textarea name="description" className="textarea textarea-bordered h-24 w-full my-3 p-3" placeholder="Service Description" required></textarea>
-            <input className='font-bold text-lg bg-[#F9C6CD] py-2 px-4 rounded my-3 cursor-pointer' type="submit" value="Add Service Now" />
+            <input className='font-bold text-lg color-bg py-2 px-4 rounded my-3 cursor-pointer' type="submit" value="Add Service Now" />
         </form>
     </div>
     );

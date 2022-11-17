@@ -40,8 +40,9 @@ const Header = () => {
                 <div className={`nav-menu flex  md:items-center flex-col md:flex-row   ${display ? 'flex' : 'hidden md:flex'}`} >
                     <div onClick={()=>setDisplay(false)} className="nav-menu-link items-start flex flex-col md:flex-row py-12 md:py-1 ">
                         <Link className={`mr-4 text-lg font-semibold   my-2`} to='/'>Home</Link>
-                        <Link className={`mr-4 text-lg font-semibold   my-2`} to='/services'>Services</Link>
 
+                        <Link className={`mr-4 text-lg font-semibold   my-2`} to='/services'>Services</Link>
+                        <Link className={`mr-4 text-lg font-semibold   my-2`} to='/blogs'>Blogs</Link>
 
                         {
                             user ? <>

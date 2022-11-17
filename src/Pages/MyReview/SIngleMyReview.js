@@ -3,11 +3,11 @@ import { FaEdit, FaTrash } from 'react-icons/fa';
 
 const SIngleMyReview = ({ myreviewSingle, handleDelete }) => {
 
-    const { customer, email, photo, price, message, serviceName, _id } = myreviewSingle
+    const { customer,  photo,  message, serviceName, _id } = myreviewSingle
     return (
         <div>
             
-            <div className='bg-rose-200 md:mx-12 p-10 rounded'>
+            <div className='color-bg md:mx-12 p-10 rounded'>
                 <h1 className="text-center text-3xl font-extrabold my-3">{serviceName}</h1>
                 <h1 className="text-2xl font-bold flex items-center my-3"> <span><img className='w-16 rounded-full mx-3' src={photo} alt="" /></span> {customer}</h1>
                 <p className='text-center py-3'>{message}</p>
