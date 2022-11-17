@@ -4,7 +4,7 @@ import { AuthContext } from '../../AuthContext/UserContext';
 
 const SignUp = () => {
 
-    const {createUser , userUpdate,setLoading} = useContext(AuthContext);
+    const {createUser , userUpdate,setLoading ,loading} = useContext(AuthContext);
     const [ errorMsg, setErrorMsg] = useState('')
 
     const navigate = useNavigate();
@@ -42,8 +42,18 @@ const SignUp = () => {
             setErrorMsg("Password and confirmation don't match");
 
         }
-        
-      
+    }
+
+    if (loading) {
+        return <div className='py-36 text-center'>
+            <button type="button" class="bg-red-900 rounded-full" disabled>
+                <svg class="motion-safe:animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
+
+                </svg>
+
+            </button>
+        </div>
+
     }
     return (
         <div className=" py-32 w-full flex justify-center">

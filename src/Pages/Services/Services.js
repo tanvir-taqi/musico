@@ -6,17 +6,32 @@ const Services = () => {
     const [services , setServices] = useState([])
     const [count , setCount] = useState(0)
     const [seeAll , setSeeAll] = useState(3)
+    const [ loading, setLoading] = useState(true)
 
 
     // services load on ui
     useEffect(()=>{
+        setLoading(true)
         fetch(`http://localhost:5000/services/?service=${seeAll}`)
         .then(res => res.json())
         .then(data =>{
             setCount(data.count)
             setServices(data.services)
+            setLoading(false)
         })
     },[seeAll])
+
+    if(loading){
+        return <div className='py-36 text-center'>
+             <button type="button" class="bg-red-900 rounded-full" disabled>
+        <svg class="motion-safe:animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
+         
+        </svg>
+        
+      </button>
+      </div>
+
+    }
     return (
         <div className='py-32 '> 
         <div className='services-container'>
