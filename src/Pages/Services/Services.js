@@ -9,6 +9,8 @@ const Services = () => {
     const [ loading, setLoading] = useState(true)
 
 
+    
+
     // services load on ui
     useEffect(()=>{
         setLoading(true)
@@ -23,7 +25,7 @@ const Services = () => {
 
     if(loading){
         return <div className='py-36 text-center'>
-             <button type="button" class="bg-red-900 rounded-full" disabled>
+             <button type="button" class="bg-red-600 rounded-full " disabled>
         <svg class="motion-safe:animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
          
         </svg>

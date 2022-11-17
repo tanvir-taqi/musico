@@ -17,6 +17,9 @@ const MyReview = () => {
 
             fetch(`http://localhost:5000/reviews/${id}`, {
                 method: 'DELETE',
+                headers:{
+                    authorization: `Bearer ${localStorage.getItem('musico-token')}`
+                }
             })
                 .then(res => res.json())
                 .then(data => {

@@ -26,10 +26,33 @@ const Login = () => {
         login(email, password)
             .then(result => {
                 const user = result.user;
-                navigate(from, { replace: true });
-                setLoading(false)
+
+                const currentUser = {
+                    email : user.email
+                }
+
+                fetch('http://localhost:5000/jwt', {
+                    method:'POST',
+                    headers:{
+                        'content-type': 'application/json'
+                    },
+                    body:JSON.stringify(currentUser)
+                })
+                .then(res=>res.json())
+                .then(data => {
+                    
+                    localStorage.setItem('musico-token', data.token)
+                    navigate(from, { replace: true });
+                    setLoading(false)
+                })
+
+            
+               
             })
-            .catch(error => console.log(error));
+            .catch(error =>{
+                console.log(error);
+                setLoading(false)
+            } )
     }
 
     const handleSocialLogin = (provider) => {
@@ -39,7 +62,10 @@ const Login = () => {
                 navigate(from, { replace: true });
                 setLoading(false)
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                setLoading(false)
+                console.log(error)
+            });
 
     }
 

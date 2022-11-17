@@ -49,7 +49,7 @@ const Header = () => {
                                 <Link className={`mr-4 text-lg font-semibold  my-2 `} to={`/myreview/?email=${user.email}`}>My Review</Link>
                                 <Link className={`mr-4 text-lg font-semibold  my-2 `} to='/addservices'>Add Services</Link>
 
-                                <div> {user?.photoURL ? <img src={user?.photoURL} alt="" className="user-img "  /> : <FaUser></FaUser>}</div>
+                                <div className='my-3'> {user?.photoURL ? <img src={user?.photoURL} alt="" className="user-img -my-3 "  /> : <span className=''><FaUser></FaUser></span> }</div>
                                 <button onClick={handleLogOut} className='md:mx-4 text-lg font-semibold my-2'>Log Out</button>
 
                             </>
