@@ -45,7 +45,7 @@ const Header = () => {
 
                         {
                             user ? <>
-                                <Link className={`mr-4 text-lg font-semibold  my-2 `} to='/myreview'>My Review</Link>
+                                <Link className={`mr-4 text-lg font-semibold  my-2 `} to={`/myreview/?email=${user.email}`}>My Review</Link>
                                 <Link className={`mr-4 text-lg font-semibold  my-2 `} to='/addservices'>Add Services</Link>
 
                                 <div> {user?.photoURL ? <img src={user?.photoURL} alt="" className="user-img "  /> : <FaUser></FaUser>}</div>

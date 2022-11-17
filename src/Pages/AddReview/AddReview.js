@@ -63,7 +63,6 @@ const AddReview = () => {
                     <input name="email" type="text" placeholder="Your email" defaultValue={user?.email} className=" w-full p-3 " readOnly />
                 </div>
                 <textarea name="message" className="textarea textarea-bordered h-24 w-full my-3 p-3" placeholder="Your Message" required></textarea>
-
                 <input className='font-bold text-lg bg-[#F9C6CD] py-2 px-4 rounded my-3' type="submit" value="Add Review Now" />
             </form>
         </div>

@@ -1,8 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../layout/Main";
 import AddReview from "../Pages/AddReview/AddReview";
+import AddServices from "../Pages/AddServices/AddServices";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
+import MyReview from "../Pages/MyReview/MyReview";
 
 import ServiceDetails from "../Pages/Services/ServiceDetails";
 import Services from "../Pages/Services/Services";
@@ -43,7 +45,16 @@ export const router = createBrowserRouter([
                 loader:({params})=>fetch(`http://localhost:5000/services/${params.id}`)
 
             },
+            {
+                path:'/addservices',
+                element: <PrivateRoute><AddServices></AddServices></PrivateRoute>,
 
+            },
+            {
+                path: "/myreview",
+                element: <PrivateRoute><MyReview></MyReview></PrivateRoute>
+
+            }
         ]
     }
 ]);
