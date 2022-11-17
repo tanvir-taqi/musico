@@ -4,3 +4,7 @@
 .colored-text{
   color: rgb(233, 31, 99);
 }
+
+body{
+  min-height: 100vh;
+}

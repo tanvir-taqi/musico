@@ -71,7 +71,7 @@ const SignUp = () => {
                     <input required type="password" name="confirm" id="confirm" placeholder="Confirm Password" className="p-2 w-full" />
                 </div>
                 <p className='text-red-600'>{errorMsg}</p>
-                <input type="submit" className='font-bold text-lg bg-[#F9C6CD] py-2 px-4 rounded my-3' value="Sign In" />
+                <input type="submit" className='cursor-pointer font-bold text-lg bg-[#F9C6CD] py-2 px-4 rounded my-3' value="Sign In" />
             </form>
             <h4>Already Have an Account? <Link to='/login' className='text-[rgb(233,31,99)]'>Sign In</Link></h4>
         </div>
