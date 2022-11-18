@@ -6,6 +6,7 @@ import { AuthContext } from '../../AuthContext/UserContext';
 
 
 
+
 const Login = () => {
 
     const { login, setLoading, loading, socialLogin } = useContext(AuthContext);
@@ -28,31 +29,31 @@ const Login = () => {
                 const user = result.user;
 
                 const currentUser = {
-                    email : user.email
+                    email: user.email
                 }
 
                 fetch('http://localhost:5000/jwt', {
-                    method:'POST',
-                    headers:{
+                    method: 'POST',
+                    headers: {
                         'content-type': 'application/json'
                     },
-                    body:JSON.stringify(currentUser)
+                    body: JSON.stringify(currentUser)
                 })
-                .then(res=>res.json())
-                .then(data => {
-                    
-                    localStorage.setItem('musico-token', data.token)
-                    navigate(from, { replace: true });
-                    setLoading(false)
-                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        localStorage.setItem('musico-token', data.token)
+                        navigate(from, { replace: true });
+                        setLoading(false)
+                    })
 
-            
-               
+
+
             })
-            .catch(error =>{
+            .catch(error => {
                 console.log(error);
                 setLoading(false)
-            } )
+            })
     }
 
     const handleSocialLogin = (provider) => {
@@ -71,8 +72,8 @@ const Login = () => {
 
     if (loading) {
         return <div className='py-36 text-center'>
-            <button type="button" class="bg-red-900 rounded-full" disabled>
-                <svg class="motion-safe:animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
+            <button type="button" class="bg-red-600 rounded-full " disabled>
+                <svg className="motion-safe:animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
 
                 </svg>
 
