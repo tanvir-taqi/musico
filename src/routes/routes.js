@@ -9,7 +9,7 @@ import MyReview from "../Pages/MyReview/MyReview";
 import AllServices from "../Pages/Services/AllServices";
 
 import ServiceDetails from "../Pages/Services/ServiceDetails";
-import Services from "../Pages/Services/Services";
+
 import SignUp from "../Pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
@@ -31,7 +31,7 @@ export const router = createBrowserRouter([
             {
                 path: "/services/:id",
                 element: <ServiceDetails></ServiceDetails>,
-                loader:({params})=>fetch(`http://localhost:5000/services/${params.id}`)
+                loader:({params})=>fetch(`https://musico-server.vercel.app/services/${params.id}`)
             },
             {
                 path: "/login",
@@ -48,7 +48,7 @@ export const router = createBrowserRouter([
             {
                 path: "/addreview/:id",
                 element: <PrivateRoute><AddReview></AddReview></PrivateRoute>,
-                loader:({params})=>fetch(`http://localhost:5000/services/${params.id}`)
+                loader:({params})=>fetch(`https://musico-server.vercel.app/services/${params.id}`)
 
             },
             {

@@ -6,7 +6,7 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 const SingleService = ({ services }) => {
 
-    const { _id, service, picture, price, description } = services
+    const { _id, service, picture,  description } = services
     return (
         <div className=' service-card'>
             <div className={`course-card rounded-3xl  p-6    border   relative`}>

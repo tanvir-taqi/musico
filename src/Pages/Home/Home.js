@@ -6,7 +6,7 @@ import FavoriteTracks from './FavoriteTracks/FavoriteTracks';
 
 const Home = () => {
 
-    useEffect(()=>{
+    useEffect(() => {
         document.title = 'Musico';
     })
    

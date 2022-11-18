@@ -15,7 +15,7 @@ const Services = () => {
     // services load on ui
     useEffect(() => {
         setLoading(true)
-        fetch(`http://localhost:5000/services/?service=${seeAll}`)
+        fetch(`https://musico-server.vercel.app/services/?service=${seeAll}`)
             .then(res => res.json())
             .then(data => {
                 setCount(data.count)

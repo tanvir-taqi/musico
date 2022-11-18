@@ -26,7 +26,7 @@ const MyReview = () => {
 
     // loading all the reviews by email as query parameters
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+        fetch(`https://musico-server.vercel.app/reviews?email=${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('musico-token')}`
             }
@@ -48,7 +48,7 @@ const MyReview = () => {
         const confirm = window.confirm('Are you sure you want to delete?')
         if (confirm) {
 
-            fetch(`http://localhost:5000/reviews/${id}`, {
+            fetch(`https://musico-server.vercel.app//reviews/${id}`, {
                 method: 'DELETE',
               
             })
@@ -89,7 +89,7 @@ const MyReview = () => {
        
         setModal(true)
 
-        fetch(`http://localhost:5000/review/${id}`)
+        fetch(`https://musico-server.vercel.app/review/${id}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -110,7 +110,7 @@ const MyReview = () => {
         }
 
         // sending a patch request
-        fetch(`http://localhost:5000/reviews/${currentMyReview._id}`, {
+        fetch(`https://musico-server.vercel.app/reviews/${currentMyReview._id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
@@ -132,8 +132,7 @@ const MyReview = () => {
                     setReviewLoading(false)
                     setModal(false)
                 }
-                // const newRemaining = myreview.filter(mrc => mrc._id );
-                // setMyreview(newRemaining);
+              
 
             })
 

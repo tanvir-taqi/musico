@@ -35,12 +35,12 @@ const Login = () => {
         login(email, password)
             .then(result => {
                 const user = result.user;
-
+               
                 const currentUser = {
                     email: user.email
                 }
 
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://musico-server.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -51,11 +51,11 @@ const Login = () => {
                     .then(data => {
                         console.log(data);
                         localStorage.setItem('musico-token', data.token)
-                        navigate(from, { replace: true });
                         setLoading(false)
+                       
                     })
 
-
+                    navigate(from, { replace: true });
 
             })
             .catch(error => {

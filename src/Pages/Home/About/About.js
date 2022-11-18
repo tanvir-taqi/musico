@@ -6,14 +6,14 @@ const About = () => {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('https://musico-server.vercel.app/services')
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/allreviews')
+        fetch('https://musico-server.vercel.app/allreviews')
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])

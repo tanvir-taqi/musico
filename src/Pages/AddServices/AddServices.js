@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AddServices = () => {
 
+    const navigate = useNavigate()
 
     useEffect(()=>{
         document.title = 'Musico-Add Services';
@@ -26,7 +28,7 @@ const AddServices = () => {
              price 
         }
 
-        fetch('http://localhost:5000/services', {
+        fetch('https://musico-server.vercel.app/services', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -45,7 +47,7 @@ const AddServices = () => {
                     });
                     form.reset();
                     
-                    
+                    navigate('/services')
                     
                 }
             })
