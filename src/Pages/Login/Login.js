@@ -56,6 +56,8 @@ const Login = () => {
             })
     }
 
+
+    
     const handleSocialLogin = (provider) => {
         socialLogin(provider)
             .then(result => {

@@ -20,7 +20,7 @@ const MyReview = () => {
     const [myUpdatedReview , setMyUpdatedReview] = useState('')
 
 
-    
+    // loading all the reviews by email as query parameters
     useEffect(() => {
         fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
             headers: {
@@ -36,25 +36,17 @@ const MyReview = () => {
             .then(data => {
                 setMyreview(data)
             })
-    }, [user?.email ,myUpdatedReview])
-
+    }, [user?.email , myreview])
 
     
-
- 
-
-
-
-
+    //handling the whole delete functionalities here
     const handleDelete = (id) => {
         const confirm = window.confirm('Are you sure you want to delete?')
         if (confirm) {
 
             fetch(`http://localhost:5000/reviews/${id}`, {
                 method: 'DELETE',
-                headers: {
-                    authorization: `Bearer ${localStorage.getItem('musico-token')}`
-                }
+              
             })
                 .then(res => {
                     if (res.status === 401 || res.status === 403) {
@@ -80,34 +72,45 @@ const MyReview = () => {
     }
 
 
-    const handleNewMessage = () => {
 
+    // updating review 
+
+    // updating using useref to the state
+    const handleNewMessage = () => {
         setMyUpdatedReview(reviewElement.current.value);
 
-
     }
-
+//handling update modal
     const handleUpdateModal = (id) => {
+       
         setModal(true)
-        const currentReview = myreview.find(myCurrRev => myCurrRev._id === id)
-        setCurrentMyReview(currentReview);
+
+        fetch(`http://localhost:5000/review/${id}`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setCurrentMyReview(data[0])
+            })
+        
     }
 
+
+    //handling the whole update functionality
     const handleUpdate = (event) => {
         event.preventDefault()
-        setReviewLoading(true)
+        setReviewLoading(true) // starting the spinner in case it takes time to load
         const newReview = myUpdatedReview
-        console.log(newReview);
+        
         const newUpdateReview = {
             message: newReview
         }
 
-
+        // sending a patch request
         fetch(`http://localhost:5000/reviews/${currentMyReview._id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
-                authorization: `Bearer ${localStorage.getItem('musico-token')}`
+                
             },
             body: JSON.stringify(newUpdateReview)
         })
@@ -117,15 +120,16 @@ const MyReview = () => {
                 if (data.acknowledged) {
                     toast.success('Updateded Successfully', {
                         position: "top-center",
-                        theme: 'dark'
+                        theme: 'dark',
+                        autoClose: 900,
 
                     })
 
                     setReviewLoading(false)
                     setModal(false)
                 }
-                const newRemaining = myreview.filter(mrc => mrc._id );
-                setMyreview(newRemaining);
+                // const newRemaining = myreview.filter(mrc => mrc._id );
+                // setMyreview(newRemaining);
 
             })
 
@@ -152,13 +156,14 @@ const MyReview = () => {
                     : <div> <h1 className="text-center text-3xl colored-text font-extrabold my-3">No Review Found of Yours</h1></div>
             }
 
-            <div className={`fixed inset-0 bg-rose-400 p-3 md:w-1/2 h-full ${modal ? 'block' : 'hidden'}`}>
+            <div className={`fixed inset-0 bg-rose-400 p-3 md:w-1/2 h-full transition ease-in-out delay-150 ${modal ? 'block' : 'hidden'}`}>
                 <div>
                     <EditMyReview
                         currentMyReview={currentMyReview}
                         handleUpdate={handleUpdate}
                         handleNewMessage={handleNewMessage}
                         reviewElement={reviewElement}
+                        setModal ={setModal}
                     ></EditMyReview>
                 </div>
 
