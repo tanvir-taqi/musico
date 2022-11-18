@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AddServices = () => {
 
+
+    useEffect(()=>{
+        document.title = 'Musico-Add Services';
+    })
     
     const handleAddService = (event)=>{
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Blog from './Blog';
 
 const Blogs = () => {
@@ -25,6 +25,10 @@ const Blogs = () => {
             id: 4
         },
     ]
+
+    useEffect(()=>{
+        document.title = 'Musico-Blogs';
+    })
     return (
         <div className='py-32'>
             <h2 className="text-5xl my-6 font-extrabold colored-text text-center">Welcome to Blogs</h2>

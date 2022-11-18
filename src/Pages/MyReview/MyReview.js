@@ -20,6 +20,10 @@ const MyReview = () => {
     const [myUpdatedReview , setMyUpdatedReview] = useState('')
 
 
+    useEffect(()=>{
+        document.title = 'Musico-My Review';
+    })
+
     // loading all the reviews by email as query parameters
     useEffect(() => {
         fetch(`http://localhost:5000/reviews?email=${user?.email}`, {

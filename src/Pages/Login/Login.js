@@ -1,5 +1,5 @@
 import { GoogleAuthProvider } from 'firebase/auth';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext/UserContext';
@@ -9,6 +9,8 @@ import { AuthContext } from '../../AuthContext/UserContext';
 
 const Login = () => {
 
+
+
     const { login, setLoading, loading, socialLogin } = useContext(AuthContext);
 
     const navigate = useNavigate();
@@ -17,6 +19,12 @@ const Login = () => {
 
 
     const from = location.state?.from?.pathname || "/";
+
+
+    useEffect(()=>{
+        document.title = 'Musico-Sign In';
+    })
+
 
     const handleLogin = event => {
         event.preventDefault();

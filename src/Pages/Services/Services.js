@@ -9,7 +9,7 @@ const Services = () => {
     const [seeAll, setSeeAll] = useState(3)
     const [loading, setLoading] = useState(true)
 
-
+ 
 
 
     // services load on ui

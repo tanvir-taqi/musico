@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext/UserContext';
 
@@ -12,6 +12,10 @@ const SignUp = () => {
     
   
     const from = location.state?.from?.pathname || "/";
+
+    useEffect(()=>{
+        document.title = 'Musico-Sign Up';
+    })
 
     const handleSignUp = event =>{
         event.preventDefault();
