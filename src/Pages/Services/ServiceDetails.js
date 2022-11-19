@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../AuthContext/UserContext';
 import SingleReview from './SingleReview';
 
 const ServiceDetails = () => {
+    const {user} = useContext(AuthContext)
     const currentService = useLoaderData()
     const { _id, service, picture, price, description } = currentService
     const [currentReview , setCurrentReview] = useState([])
@@ -28,6 +30,11 @@ const ServiceDetails = () => {
 
             <button className='mb-5 mt-16 w-52 flex items-center justify-center py-1 rounded-full rounded-br-lg font-semibold bg-rose-400'>Hire Me</button>
             <Link to={`/addreview/${_id}`} className='mb-12 w-52 flex items-center justify-center py-1 rounded-full rounded-tl-lg font-semibold bg-rose-400'>Add Review</Link>
+
+
+     <p className={user ? 'hidden' : 'block'}>Please login to add a review</p>
+
+           
 
             </div>
             <div>
