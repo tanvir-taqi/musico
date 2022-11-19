@@ -25,7 +25,8 @@ const Services = () => {
     }, [seeAll])
 
     if (loading) {
-        return <Spinning></Spinning>
+        const newLocal = <Spinning></Spinning>;
+        return newLocal
 
     }
     return (

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { FcMusic } from "react-icons/fc";
 import './Header.css'
 import { FaUser } from 'react-icons/fa';
@@ -39,7 +39,7 @@ const Header = () => {
                 {/* header links  */}
                 <div className={`nav-menu flex  md:items-center flex-col md:flex-row   ${display ? 'flex' : 'hidden md:flex'}`} >
                     <div onClick={()=>setDisplay(false)} className="nav-menu-link items-start flex flex-col md:flex-row py-12 md:py-1 ">
-                        <Link className={`mr-4 text-lg font-semibold   my-2`} to='/'>Home</Link>
+                        <NavLink className={({ isActive }) => (isActive ? 'mr-4 text-lg font-semibold   my-2 text-red-400' : 'mr-4 text-lg font-semibold   my-2')} to='/'>Home</NavLink>
 
                         <Link className={`mr-4 text-lg font-semibold   my-2`} to='/services'>Services</Link>
                         <Link className={`mr-4 text-lg font-semibold   my-2`} to='/blogs'>Blogs</Link>
