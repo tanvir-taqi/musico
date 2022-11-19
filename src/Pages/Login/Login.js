@@ -1,8 +1,9 @@
 import { GoogleAuthProvider } from 'firebase/auth';
-import React, { useContext, useEffect } from 'react';
-import { FaGoogle } from 'react-icons/fa';
+import React, { useContext, useEffect, useState } from 'react';
+import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext/UserContext';
+import Spinning from '../../components/Spinning';
 
 
 
@@ -12,7 +13,7 @@ const Login = () => {
 
 
     const { login, setLoading, loading, socialLogin } = useContext(AuthContext);
-
+    const [showPass , setShowPass] = useState(false)
     const navigate = useNavigate();
     const location = useLocation();
     const googleProvider = new GoogleAuthProvider()
@@ -81,14 +82,7 @@ const Login = () => {
     }
 
     if (loading) {
-        return <div className='py-36 text-center'>
-            <button type="button" class="bg-red-600 rounded-full " disabled>
-                <svg className="motion-safe:animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
-
-                </svg>
-
-            </button>
-        </div>
+        return <Spinning></Spinning>
 
     }
 
@@ -102,8 +96,19 @@ const Login = () => {
                         <input type="email" name="email" id="email" placeholder="Email" className="p-2 w-full" />
                     </div>
                     <div className='flex flex-col my-3'>
+                        <div className='flex justify-between items-center'>
                         <label htmlFor="password" className='font-bold'>Password</label>
-                        <input type="password" name="password" id="password" placeholder="Password" className="p-2 w-full" />
+                        <span onClick={()=> setShowPass(!showPass)}>
+                            {
+                                showPass?
+                                <FaEyeSlash className='text-red-600'></FaEyeSlash>
+                                :
+                                 <FaEye className='text-stone-600' ></FaEye>
+                               
+                            }
+                        </span>
+                        </div>
+                        <input type={showPass ? 'text' : 'password'} name="password" id="password" placeholder="Password" className="p-2 w-full"  />
                     </div>
                     <input type="submit" className='font-bold text-lg bg-[#F9C6CD] py-2 px-4 rounded my-3 cursor-pointer' value="Sign In" />
                 </form>

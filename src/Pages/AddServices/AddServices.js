@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+
 
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AddServices = () => {
 
-    const navigate = useNavigate()
+    
 
     useEffect(()=>{
         document.title = 'Musico-Add Services';
@@ -42,16 +42,17 @@ const AddServices = () => {
                    
                     toast.success('Service Added Successfully', {
                         position: "top-center",
-                        theme:'dark'
+                        autoClose: 900
                   
                     });
                     form.reset();
                     
-                    navigate('/services')
+                    
                     
                 }
+                
             })
-            .catch(err => alert(err));
+            .catch(err => console.log(err));
 
 
     }

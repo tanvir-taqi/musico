@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext/UserContext';
+import Spinning from '../../components/Spinning';
 
 const SignUp = () => {
 
@@ -36,6 +37,25 @@ const SignUp = () => {
                 }
                 userUpdate(profile)
                 .then(res => {
+
+                    const currentUser = {
+                        email: user.email
+                    }
+
+                    fetch('https://musico-server.vercel.app/jwt', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(currentUser)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data);
+                            localStorage.setItem('musico-token', data.token)
+                            setLoading(false)
+                           
+                        })
                     setLoading(false)
                 })
                 .catch(err => console.log(err))
@@ -49,15 +69,7 @@ const SignUp = () => {
     }
 
     if (loading) {
-        return <div className='py-36 text-center'>
-            <button type="button" class="bg-red-900 rounded-full" disabled>
-                <svg class="motion-safe:animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
-
-                </svg>
-
-            </button>
-        </div>
-
+        return<Spinning></Spinning>
     }
     return (
         <div className=" py-32 w-full flex justify-center">
@@ -85,7 +97,7 @@ const SignUp = () => {
                     <input required type="password" name="confirm" id="confirm" placeholder="Confirm Password" className="p-2 w-full" />
                 </div>
                 <p className='text-red-600'>{errorMsg}</p>
-                <input type="submit" className='cursor-pointer font-bold text-lg bg-[#F9C6CD] py-2 px-4 rounded my-3' value="Sign In" />
+                <input type="submit" className='cursor-pointer font-bold text-lg bg-[#F9C6CD] py-2 px-4 rounded my-3' value="Sign Up" />
             </form>
             <h4>Already Have an Account? <Link to='/login' className='text-[rgb(233,31,99)]'>Sign In</Link></h4>
         </div>

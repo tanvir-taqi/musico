@@ -31,6 +31,8 @@ const ServiceDetails = () => {
 
             </div>
             <div>
+            <h1 className="text-center my-3 text-4xl font-extrabold colored-text ">Review Section</h1>
+
                 {
                     currentReview.length < 1 ? <p className='colored-text font-semibold text-center my-12'>No Review Founded</p> 
                     : <div> 

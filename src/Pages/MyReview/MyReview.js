@@ -60,9 +60,9 @@ const MyReview = () => {
                 })
                 .then(data => {
                     if (data.deletedCount > 0) {
-                        toast.success('Deleted Successfully', {
+                        toast.error('Deleted Successfully', {
                             position: "top-center",
-                            theme: 'dark'
+                            autoClose: 900
 
                         });
                         const remaining = myreview.filter(mrc => mrc._id !== id);
@@ -124,7 +124,7 @@ const MyReview = () => {
                 if (data.acknowledged) {
                     toast.success('Updateded Successfully', {
                         position: "top-center",
-                        theme: 'dark',
+                        
                         autoClose: 900,
 
                     })
