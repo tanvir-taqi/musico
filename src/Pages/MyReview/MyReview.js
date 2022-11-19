@@ -40,7 +40,7 @@ const MyReview = () => {
             .then(data => {
                 setMyreview(data)
             })
-    }, [user?.email , myreview])
+    }, [user?.email , myreview , logOut])
 
     
     //handling the whole delete functionalities here
