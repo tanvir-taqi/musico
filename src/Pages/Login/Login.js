@@ -2,6 +2,7 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useEffect, useState } from 'react';
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { jwtFetchRequest } from '../../API/Jwt';
 import { AuthContext } from '../../AuthContext/UserContext';
 import Spinning from '../../components/Spinning';
 
@@ -13,7 +14,7 @@ const Login = () => {
 
 
     const { login, setLoading, loading, socialLogin } = useContext(AuthContext);
-    const [showPass , setShowPass] = useState(false)
+    const [showPass, setShowPass] = useState(false)
     const navigate = useNavigate();
     const location = useLocation();
     const googleProvider = new GoogleAuthProvider()
@@ -22,7 +23,7 @@ const Login = () => {
     const from = location.state?.from?.pathname || "/";
 
 
-    useEffect(()=>{
+    useEffect(() => {
         document.title = 'Musico-Sign In';
     })
 
@@ -36,27 +37,17 @@ const Login = () => {
         login(email, password)
             .then(result => {
                 const user = result.user;
-               
-                const currentUser = {
-                    email: user.email
-                }
 
-                fetch('https://musico-server.vercel.app/jwt', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(currentUser)
-                })
+                jwtFetchRequest(user)
                     .then(res => res.json())
                     .then(data => {
                         console.log(data);
                         localStorage.setItem('musico-token', data.token)
                         setLoading(false)
-                       
+
                     })
 
-                    navigate(from, { replace: true });
+                navigate(from, { replace: true });
 
             })
             .catch(error => {
@@ -66,11 +57,23 @@ const Login = () => {
     }
 
 
-    
+
     const handleSocialLogin = (provider) => {
         socialLogin(provider)
             .then(result => {
                 const user = result.user;
+
+                jwtFetchRequest(user)
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        localStorage.setItem('musico-token', data.token)
+                        setLoading(false)
+
+                    })
+
+
+
                 navigate(from, { replace: true });
                 setLoading(false)
             })
@@ -97,18 +100,18 @@ const Login = () => {
                     </div>
                     <div className='flex flex-col my-3'>
                         <div className='flex justify-between items-center'>
-                        <label htmlFor="password" className='font-bold'>Password</label>
-                        <span onClick={()=> setShowPass(!showPass)}>
-                            {
-                                showPass?
-                                <FaEyeSlash className='text-red-600'></FaEyeSlash>
-                                :
-                                 <FaEye className='text-stone-600' ></FaEye>
-                               
-                            }
-                        </span>
+                            <label htmlFor="password" className='font-bold'>Password</label>
+                            <span onClick={() => setShowPass(!showPass)}>
+                                {
+                                    showPass ?
+                                        <FaEyeSlash className='text-red-600'></FaEyeSlash>
+                                        :
+                                        <FaEye className='text-stone-600' ></FaEye>
+
+                                }
+                            </span>
                         </div>
-                        <input type={showPass ? 'text' : 'password'} name="password" id="password" placeholder="Password" className="p-2 w-full"  />
+                        <input type={showPass ? 'text' : 'password'} name="password" id="password" placeholder="Password" className="p-2 w-full" />
                     </div>
                     <input type="submit" className='font-bold text-lg bg-[#F9C6CD] py-2 px-4 rounded my-3 cursor-pointer' value="Sign In" />
                 </form>
