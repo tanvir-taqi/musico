@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import Services from './Services';
+
+import TotalServices from './TotalServices';
 
 const AllServices = () => {
 
@@ -11,7 +12,7 @@ const AllServices = () => {
 
     return (
         <div>
-            <Services></Services>
+           <TotalServices></TotalServices>
         </div>
     );
 };

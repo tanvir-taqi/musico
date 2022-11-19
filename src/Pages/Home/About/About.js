@@ -20,7 +20,7 @@ const About = () => {
 
 
     return (
-        <div className='p-10 mx-4 md:mx-20 color-bg'>
+        <div className='md:p-10 p-2 mx-4 color-bg'>
             <h1 className="text-center my-3 text-4xl font-extrabold ">About</h1>
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-3'>
                 <div className='md:flex hidden justify-center items-center '>

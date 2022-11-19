@@ -1,22 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import SingleService from './SingleService';
-import './Services.css'
 import Spinning from '../../components/Spinning';
-import { Link } from 'react-router-dom';
+import SingleService from './SingleService';
 
-const Services = () => {
+const TotalServices = () => {
     const [services, setServices] = useState([])
-
+  
     const [loading, setLoading] = useState(true)
 
 
-    // services load on home ui
     useEffect(() => {
         setLoading(true)
-        fetch(`https://musico-server.vercel.app/services/?service=3`)
+        fetch(`https://musico-server.vercel.app/allservices`)
             .then(res => res.json())
             .then(data => {
-               
+                
                 setServices(data.services)
                 setLoading(false)
             })
@@ -37,14 +34,8 @@ const Services = () => {
                     ></SingleService>)
                 }
             </div>
-    <div className='flex my-3 justify-center'>
-
-                <Link to='/services'  className={` text-lg text-gray-800 color-bg px-4 py-2 rounded-lg font-bold text-center`} >See All</Link>
-    </div>
-            
-
+           
         </div>
-    );
-};
+)};
 
-export default Services;
+export default TotalServices;

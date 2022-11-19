@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import Services from '../Services/Services';
+
 import About from './About/About';
 import Banner from './Banner';
 import FavoriteTracks from './FavoriteTracks/FavoriteTracks';
+import ServiceHome from './ServiceHome/ServiceHome';
 
 const Home = () => {
 
@@ -13,7 +14,7 @@ const Home = () => {
     return (
         <div className='py-32'>
             <Banner></Banner>
-            <Services></Services>
+            <ServiceHome></ServiceHome>
             <About></About>
             <FavoriteTracks></FavoriteTracks>
         </div>

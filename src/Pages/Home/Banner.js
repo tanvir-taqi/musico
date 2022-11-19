@@ -3,7 +3,7 @@ import React from 'react';
 const Banner = () => {
     return (
         <div>
-            <div className="container md:mx-32 p-6 md:py-44  my-10 color-bg flex flex-col md:flex-row items-center gap-6" >
+            <div className="container md:mx-auto md:p-6 p-2 md:py-44  my-10 color-bg flex flex-col md:flex-row items-center gap-6" >
                 <div >
 
                 <h1 className='text-5xl font-extrabold'>Welcome To My Site <span className='colored-text'>MUSICO</span></h1>
