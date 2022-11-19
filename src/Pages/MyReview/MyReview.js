@@ -48,16 +48,11 @@ const MyReview = () => {
         const confirm = window.confirm('Are you sure you want to delete?')
         if (confirm) {
 
-            fetch(`https://musico-server.vercel.app//reviews/${id}`, {
+            fetch(`https://musico-server.vercel.app/reviews/${id}`, {
                 method: 'DELETE',
               
             })
-                .then(res => {
-                    if (res.status === 401 || res.status === 403) {
-                        return logOut()
-                    }
-                    return res.json()
-                })
+                .then(res =>  res.json())
                 .then(data => {
                     if (data.deletedCount > 0) {
                         toast.error('Deleted Successfully', {
@@ -71,7 +66,7 @@ const MyReview = () => {
                 })
 
         } else {
-            return 
+            return toast("Sorry, you are not allowed to delete this review")
         }
     }
 

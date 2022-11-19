@@ -2,7 +2,7 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useEffect, useState } from 'react';
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { jwtFetchRequest } from '../../API/Jwt';
+
 import { AuthContext } from '../../AuthContext/UserContext';
 import Spinning from '../../components/Spinning';
 
@@ -38,7 +38,17 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
 
-                jwtFetchRequest(user)
+                const currentUser = {
+                    email: user.email
+                }
+            
+                fetch('https://musico-server.vercel.app/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
                     .then(res => res.json())
                     .then(data => {
                         console.log(data);
@@ -63,7 +73,17 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
 
-                jwtFetchRequest(user)
+                const currentUser = {
+                    email: user.email
+                }
+            
+                fetch('https://musico-server.vercel.app/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
                     .then(res => res.json())
                     .then(data => {
                         console.log(data);

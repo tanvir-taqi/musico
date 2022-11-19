@@ -19,7 +19,7 @@ const FavoriteTracks = () => {
             <div className='grid grid-cols-1 md:grid-cols-3 gap-6'> 
                 {
                     favTracks.map(ft => <SingleTracks
-                        key={ft.id}
+                        key={ft._id}
                         track={ft}
                     ></SingleTracks>)
                 }

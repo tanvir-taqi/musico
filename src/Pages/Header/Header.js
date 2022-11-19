@@ -39,21 +39,21 @@ const Header = () => {
                 {/* header links  */}
                 <div className={`nav-menu flex  md:items-center flex-col md:flex-row   ${display ? 'flex' : 'hidden md:flex'}`} >
                     <div onClick={()=>setDisplay(false)} className="nav-menu-link items-start flex flex-col md:flex-row py-12 md:py-1 ">
-                        <NavLink className={({ isActive }) => (isActive ? 'mr-4 text-lg font-semibold   my-2 text-red-400' : 'mr-4 text-lg font-semibold   my-2')} to='/'>Home</NavLink>
+                        <NavLink className={({ isActive }) => (isActive ? 'mr-4 text-lg font-semibold   my-2 colored-text' : 'mr-4 text-lg font-semibold   my-2')} to='/'>Home</NavLink>
 
-                        <Link className={`mr-4 text-lg font-semibold   my-2`} to='/services'>Services</Link>
-                        <Link className={`mr-4 text-lg font-semibold   my-2`} to='/blogs'>Blogs</Link>
+                        <NavLink className={({ isActive }) => (isActive ? 'mr-4 text-lg font-semibold   my-2 colored-text' : 'mr-4 text-lg font-semibold   my-2')} to='/services'>Services</NavLink>
+                        <NavLink className={({ isActive }) => (isActive ? 'mr-4 text-lg font-semibold   my-2 colored-text' : 'mr-4 text-lg font-semibold   my-2')} to='/blogs'>Blogs</NavLink>
 
                         {
                             user ? <>
-                                <Link className={`mr-4 text-lg font-semibold  my-2 `} to={`/myreview/?email=${user.email}`}>My Review</Link>
-                                <Link className={`mr-4 text-lg font-semibold  my-2 `} to='/addservices'>Add Services</Link>
+                                <NavLink className={({ isActive }) => (isActive ? 'mr-4 text-lg font-semibold   my-2 colored-text' : 'mr-4 text-lg font-semibold   my-2')} to={`/myreview/?email=${user.email}`}>My Review</NavLink>
+                                <NavLink className={({ isActive }) => (isActive ? 'mr-4 text-lg font-semibold   my-2 colored-text' : 'mr-4 text-lg font-semibold   my-2')} to='/addservices'>Add Services</NavLink>
 
                                 <div className='my-3'> {user?.photoURL ? <img src={user?.photoURL} alt="" className="user-img -my-3 "  /> : <span className=''><FaUser></FaUser></span> }</div>
                                 <button onClick={handleLogOut} className='md:mx-4 text-lg font-semibold my-2'>Log Out</button>
 
                             </>
-                                : <Link to='/login' className=' mr-4 text-lg font-semibold my-2'>Log In </Link>
+                                : <NavLink to='/login' className={({ isActive }) => (isActive ? 'mr-4 text-lg font-semibold   my-2 colored-text' : 'mr-4 text-lg font-semibold   my-2')}>Log In </NavLink>
                         }
 
 

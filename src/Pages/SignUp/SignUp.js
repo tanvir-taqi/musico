@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { jwtFetchRequest } from '../../API/Jwt';
+
 import { AuthContext } from '../../AuthContext/UserContext';
 import Spinning from '../../components/Spinning';
 
@@ -39,7 +39,17 @@ const SignUp = () => {
                     userUpdate(profile)
                         .then(res => {
 
-                            jwtFetchRequest(user)
+                            const currentUser = {
+                                email: user.email
+                            }
+                        
+                            fetch('https://musico-server.vercel.app/jwt', {
+                                method: 'POST',
+                                headers: {
+                                    'content-type': 'application/json'
+                                },
+                                body: JSON.stringify(currentUser)
+                            })
                                 .then(res => res.json())
                                 .then(data => {
                                     console.log(data);
