@@ -6,7 +6,7 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 const SingleService = ({ services }) => {
 
-    const { _id, service, picture,  description } = services
+    const { _id, service, picture, price,description } = services
     return (
         <div className=' service-card'>
             <div className={`course-card rounded-3xl  p-6    border   relative`}>
@@ -20,6 +20,7 @@ const SingleService = ({ services }) => {
                     </PhotoView>
                 </PhotoProvider>
                 <h1 className='text-xl font-semibold py-2'>{service}</h1>
+                <h1 className='text-lg font-bold '>{price}$/hr </h1>
                 <p>{description.length > 100 ? description.slice(0, 100) : description}...</p>
                 <div className=' py-6 flex lg:flex-row flex-col justify-between items-center '>
 
