@@ -26,6 +26,11 @@ const Blogs = () => {
         },
     ]
 
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
     useEffect(()=>{
         document.title = 'Musico-Blogs';
     })

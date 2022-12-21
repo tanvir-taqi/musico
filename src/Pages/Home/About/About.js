@@ -6,6 +6,10 @@ const About = () => {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
+    useEffect(() => {
         fetch('https://musico-server.vercel.app/services')
             .then(res => res.json())
             .then(data => setServices(data))

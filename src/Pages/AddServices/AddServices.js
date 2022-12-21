@@ -57,6 +57,10 @@ const AddServices = () => {
 
     }
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
     return (
         <div className='py-32 md:px-20'>
             <ToastContainer></ToastContainer>
@@ -69,7 +73,7 @@ const AddServices = () => {
                 <input name="price" type="number" placeholder="Price per Hour"  className=" w-full p-3 " required/>
             </div>
             <textarea name="description" className="textarea textarea-bordered h-24 w-full my-3 p-3" placeholder="Service Description" required></textarea>
-            <input className='font-bold text-lg color-bg py-2 px-4 rounded my-3 cursor-pointer' type="submit" value="Add Service Now" />
+            <input className='font-bold text-lg  bg-[rgba(233,31,98,0.32)] hover:text-[rgb(233,31,99)] py-2 px-4 rounded my-3 cursor-pointer' type="submit" value="Add Service Now" />
         </form>
     </div>
     );

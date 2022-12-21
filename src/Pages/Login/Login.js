@@ -10,9 +10,7 @@ import Spinning from '../../components/Spinning';
 
 
 const Login = () => {
-
-
-
+    const [errorMsg, setErrorMsg] = useState('')
     const { login, setLoading, loading, socialLogin } = useContext(AuthContext);
     const [showPass, setShowPass] = useState(false)
     const navigate = useNavigate();
@@ -21,6 +19,10 @@ const Login = () => {
 
 
     const from = location.state?.from?.pathname || "/";
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
 
 
     useEffect(() => {
@@ -61,8 +63,10 @@ const Login = () => {
 
             })
             .catch(error => {
-                console.log(error);
-                setLoading(false)
+                if(error){
+                    setLoading(false)
+                    setErrorMsg("Wrong email or password!!")
+                }
             })
     }
 
@@ -133,7 +137,8 @@ const Login = () => {
                         </div>
                         <input type={showPass ? 'text' : 'password'} name="password" id="password" placeholder="Password" className="p-2 w-full" />
                     </div>
-                    <input type="submit" className='font-bold text-lg bg-[#F9C6CD] py-2 px-4 rounded my-3 cursor-pointer' value="Sign In" />
+                    <p className='text-red-600'>{errorMsg}</p>
+                    <input type="submit" className='font-bold text-lg bg-[rgba(233,31,98,0.32)] hover:text-[rgb(233,31,99)] py-2 px-4 rounded my-3 cursor-pointer' value="Sign In" />
                 </form>
                 <h4>New to Musico? <Link to='/signup' className='text-[rgb(233,31,99)]'>Create Account</Link></h4>
                 <button onClick={() => handleSocialLogin(googleProvider)} className='flex items center justify-center px-5 py-2 rounded-full my-5 bg-[#F9C6CD]'> <span className='mt-1 mr-4'><FaGoogle></FaGoogle></span> Sign In With Google</button>

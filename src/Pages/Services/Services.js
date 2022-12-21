@@ -9,6 +9,10 @@ const Services = () => {
 
     const [loading, setLoading] = useState(true)
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
 
     // services load on home ui
     useEffect(() => {

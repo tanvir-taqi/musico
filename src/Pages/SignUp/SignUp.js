@@ -27,6 +27,7 @@ const SignUp = () => {
         const confirm = form.confirm.value;
         const name = form.name.value;
         const photo = form.photo.value;
+        
 
         if (password === confirm) {
             createUser(email, password)
@@ -42,7 +43,7 @@ const SignUp = () => {
                             const currentUser = {
                                 email: user.email
                             }
-                        
+
                             fetch('https://musico-server.vercel.app/jwt', {
                                 method: 'POST',
                                 headers: {
@@ -52,17 +53,25 @@ const SignUp = () => {
                             })
                                 .then(res => res.json())
                                 .then(data => {
-                                    console.log(data);
                                     localStorage.setItem('musico-token', data.token)
-                                    setLoading(false)
-
+                                    form.reset()
                                 })
-                            setLoading(false)
+
                         })
-                        .catch(err => console.log(err))
-                    navigate(from, { replace: true });
+                        .catch(err => {
+                            setLoading(false)
+                            console.log(err)
+                        })
+                        setLoading(false)
+                        navigate(from, { replace: true });
+
                 })
-                .catch(err => console.error(err));
+                .catch(err => {
+                    setLoading(false)
+                    if(err){
+                        setErrorMsg("Password should be at least 6 characters long..");
+                    }
+                });
         } else {
             setErrorMsg("Password and confirmation don't match");
 
@@ -74,7 +83,7 @@ const SignUp = () => {
     }
     return (
         <div className=" py-32 w-full flex justify-center">
-            <div className='p-10 bg-rose-100 w-96'>
+            <div className='p-10 bg-[#FAC6D7] rounded w-96'>
                 <h1 className="text-center font-bold text-2xl">Sign Up</h1>
                 <form onSubmit={handleSignUp}>
                     <div className='flex flex-col my-3'>
@@ -98,7 +107,7 @@ const SignUp = () => {
                         <input required type="password" name="confirm" id="confirm" placeholder="Confirm Password" className="p-2 w-full" />
                     </div>
                     <p className='text-red-600'>{errorMsg}</p>
-                    <input type="submit" className='cursor-pointer font-bold text-lg bg-[#F9C6CD] py-2 px-4 rounded my-3' value="Sign Up" />
+                    <input type="submit" className='cursor-pointer font-bold text-lg bg-[rgba(233,31,98,0.32)] hover:text-[rgb(233,31,99)] py-2 px-4 rounded my-3' value="Sign Up" />
                 </form>
                 <h4>Already Have an Account? <Link to='/login' className='text-[rgb(233,31,99)]'>Sign In</Link></h4>
             </div>

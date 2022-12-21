@@ -6,6 +6,10 @@ import FavoriteTracks from './FavoriteTracks/FavoriteTracks';
 import ServiceHome from './ServiceHome/ServiceHome';
 
 const Home = () => {
+    
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
 
     useEffect(() => {
         document.title = 'Musico';
